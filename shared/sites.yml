@@ -1,0 +1,23 @@
+---
+- name: install java
+  hosts: test
+  remote_user: vagrant
+  become_method: sudo
+  become_user: root
+ 
+  task:
+   - name: install java 8 prerequisites
+     apt: name=python-software-properties
+   
+   - name: Add Java 8 repository
+     apt_repository: repo='ppa:webupd8team/java'
+     
+   - name: apt-get update
+     apt: update_cache=yes
+   
+   - name: Agree to oracle license
+     debconf: name=oracle-java8-installer question=shared/accepted-oracle-license-v1-1 vtype=select value=true
+
+   - name: Install Java 8
+     apt: name=oracle-java8-installer force=yes   
+  
