@@ -26,7 +26,7 @@
      apt: name=oracle-java8-installer force=yes   
    
    - name: Add maven repository
-     apt_repository: repo='ppa:andrei-pozolotin/maven3' update_cache = yes
+     apt_repository: repo='ppa:andrei-pozolotin/maven3'
      
    - name: Install Maven
      apt: name=maven3
