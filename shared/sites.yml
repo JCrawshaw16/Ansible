@@ -33,6 +33,3 @@
    
    - name: Install Git
      apt: name=git
-   
-   - name: Configure Git
-     git_config: name=user.email scope=global value='vagrant@{{ansible_fqdn}}' 
