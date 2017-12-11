@@ -1,5 +1,5 @@
 ---
-- name: install java
+- name: install java, maven 3 and git
   hosts: test
   remote_user: vagrant
   become: true
@@ -24,4 +24,15 @@
 
    - name: Install Java 8
      apt: name=oracle-java8-installer force=yes   
-  
+   
+   - name: Add maven repository
+     apt_repository: repo='ppa:andrei-pozolotin/maven3' update_cache = yes
+     
+   - name: Install Maven
+     apt: name=maven3
+   
+   - name: Install Git
+     apt: name:git
+   
+   - name: Configure Git
+     git_config: name=user.email scope=global value='vagrant@{{ansible_fqdn}}' 
