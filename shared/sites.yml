@@ -2,10 +2,11 @@
 - name: install java
   hosts: test
   remote_user: vagrant
+  become: true
   become_method: sudo
   become_user: root
  
-  task:
+  tasks:
    - name: install java 8 prerequisites
      apt: name=python-software-properties state=present
    
