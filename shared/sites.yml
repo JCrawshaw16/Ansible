@@ -7,13 +7,16 @@
  
   task:
    - name: install java 8 prerequisites
-     apt: name=python-software-properties
+     apt: name=python-software-properties state=present
    
    - name: Add Java 8 repository
      apt_repository: repo='ppa:webupd8team/java'
      
    - name: apt-get update
      apt: update_cache=yes
+   
+   - name: Ensure debconf-utils is installed
+     apt: name=debconf-utils state=present
    
    - name: Agree to oracle license
      debconf: name=oracle-java8-installer question=shared/accepted-oracle-license-v1-1 vtype=select value=true
